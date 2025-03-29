@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>campus compass | Login</title>
+    <link rel="stylesheet" href="../landingpage/style.css">
+    <link rel="stylesheet" href="login-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js for 3D elements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Tilt.js for 3D tilt effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <style>
+        /* Add styles for alert messages */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+            <h2 class="loading-text">Campus <span>compass</span></h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar glass-nav">
+            <div class="logo">
+                <a href="../landingpage/home.html">
+                    <h1>Campus<span>compass</span></h1>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times close-menu" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="../landingpage/home.html#about" class="nav-link">About</a></li>
+                    <li><a href="../landingpage/home.html#find-college" class="nav-link">Find Colleges</a></li>
+                    <li><a href="../landingpage/home.html#scholarships" class="nav-link">Scholarships</a></li>
+                    <li><a href="../landingpage/home.html#resources" class="nav-link">Resources</a></li>
+                    <li><a href="../landingpage/home.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <div class="neo-login-container">
+        <div class="animated-background">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+            <div class="shape shape4"></div>
+            <div id="particles-js"></div>
+        </div>
+        
+        <div class="glass-effect-container">
+            <div class="glass-login-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+                <div class="glass-card-content">
+                    <!-- Add message display section for PHP messages -->
+                    <div id="message-container">
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['error'])) {
+                            echo '<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> ' . $_SESSION['error'] . '</div>';
+                            unset($_SESSION['error']);
+                        }
+                        if (isset($_SESSION['success'])) {
+                            echo '<div class="alert alert-success"><i class="fas fa-check-circle"></i> ' . $_SESSION['success'] . '</div>';
+                            unset($_SESSION['success']);
+                        }
+                        ?>
+                    </div>
+                    
+                    <div class="login-header">
+                        <div class="login-logo">
+                            <div class="logo-animation">
+                                <div class="logo-circle"></div>
+                                <div class="logo-cap">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Welcome Back</h2>
+                        <p>Continue your educational journey</p>
+                    </div>
+                    
+                    <form class="login-form" action="../handlers/login_handler.php" method="POST">
+                        <div class="form-group glass-input">
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+                            <div class="focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group glass-input">
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <div class="focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" id="remember" name="remember">
+                                    <span class="checkmark"></span>
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="neo-button">
+                            <span class="button-text">Sign In</span>
+                            <span class="button-icon"><i class="fas fa-arrow-right"></i></span>
+                        </button>
+                        
+                        <div class="social-login-divider">
+                            <span>Or continue with</span>
+                        </div>
+                        
+                        <div class="social-login-buttons">
+                            <button type="button" class="social-btn google" data-tilt data-tilt-scale="1.05">
+                                <i class="fab fa-google"></i>
+                            </button>
+                            <button type="button" class="social-btn facebook" data-tilt data-tilt-scale="1.05">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button type="button" class="social-btn apple" data-tilt data-tilt-scale="1.05">
+                                <i class="fab fa-apple"></i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="register-prompt">
+                        <p>Don't have an account? <a href="register.html" class="register-link">Sign Up <i class="fas fa-user-plus"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="education-floating-elements">
+            <div class="edu-icon book" data-tilt data-tilt-max="25">
+                <i class="fas fa-book"></i>
+            </div>
+            <div class="edu-icon pencil" data-tilt data-tilt-max="25">
+                <i class="fas fa-pencil-alt"></i>
+            </div>
+            <div class="edu-icon lightbulb" data-tilt data-tilt-max="25">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="edu-icon university" data-tilt data-tilt-max="25">
+                <i class="fas fa-university"></i>
+            </div>
+            <div class="edu-icon atom" data-tilt data-tilt-max="25">
+                <i class="fas fa-atom"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Education Stats -->
+    <div class="floating-stats">
+        <div class="stat-card" data-tilt data-tilt-max="10">
+            <div class="stat-number"><span class="counter" data-target="4000">0</span>+</div>
+            <div class="stat-label">Colleges</div>
+        </div>
+        <div class="stat-card" data-tilt data-tilt-max="10">
+            <div class="stat-number">$<span class="counter" data-target="400">0</span>B+</div>
+            <div class="stat-label">Scholarships</div>
+        </div>
+        <div class="stat-card" data-tilt data-tilt-max="10">
+            <div class="stat-number"><span class="counter" data-target="96">0</span>%</div>
+            <div class="stat-label">Success Rate</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Campus Compass. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="../terms/terms.html">Terms of Service</a>
+                <a href="../contact/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.preloader').classList.add('preloader-finish');
+            }, 500);
+        });
+
+        // Mobile menu
+        function showMenu() {
+            document.getElementById('navLinks').classList.add('active');
+        }
+
+        function hideMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Initialize VanillaTilt for 3D effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tilt effect
+            VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+                max: 5,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+            });
+            
+            // Initialize particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: ["#4a6cf7", "#6941c6", "#FF6B6B"]
+                    },
+                    shape: {
+                        type: ["circle", "triangle", "polygon"],
+                        stroke: {
+                            width: 0,
+                            color: "#000000"
+                        },
+                        polygon: {
+                            nb_sides: 6
+                        }
+                    },
+                    opacity: {
+                        value: 0.2,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 0.5,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#4a6cf7",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                        attract: {
+                            enable: true,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 140,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        repulse: {
+                            distance: 100,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+            
+            // Animation for floating education icons
+            const eduIcons = document.querySelectorAll('.edu-icon');
+            eduIcons.forEach((icon, index) => {
+                gsap.to(icon, {
+                    y: `random(-20, 20)`,
+                    x: `random(-10, 10)`,
+                    rotation: `random(-10, 10)`,
+                    duration: 2 + index * 0.2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: index * 0.1
+                });
+            });
+            
+            // Counter animation
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                
+                let currentCount = 0;
+                
+                const updateCounter = () => {
+                    currentCount += increment;
+                    if (currentCount < target) {
+                        counter.textContent = Math.ceil(currentCount);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                // Start the counter animation when in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(counter);
+            });
+            
+            // Logo animation
+            gsap.to('.logo-circle', {
+                rotation: 360,
+                duration: 10,
+                repeat: -1,
+                ease: "none"
+            });
+            
+            gsap.to('.logo-cap', {
+                y: -5,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            // Form animations
+            const formControls = document.querySelectorAll('.form-control');
+            formControls.forEach(control => {
+                control.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                control.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+            });
+            
+            // Background shapes animation
+            gsap.to('.shape1', {
+                x: 'random(-100, 100)',
+                y: 'random(-100, 100)',
+                rotation: 'random(-180, 180)',
+                duration: 20,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to('.shape2', {
+                x: 'random(-150, 150)',
+                y: 'random(-150, 150)',
+                rotation: 'random(-180, 180)',
+                duration: 25,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to('.shape3', {
+                x: 'random(-120, 120)',
+                y: 'random(-120, 120)',
+                rotation: 'random(-180, 180)',
+                duration: 22,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to('.shape4', {
+                x: 'random(-80, 80)',
+                y: 'random(-80, 80)',
+                rotation: 'random(-180, 180)',
+                duration: 18,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            // Mouse follower effect
+            const glassBg = document.querySelector('.animated-background');
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                glassBg.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(105, 65, 198, 0.3), rgba(74, 108, 247, 0.2), rgba(255, 107, 107, 0.1), transparent)`;
+            });
+        });
+    </script>
+</body>
+</html>

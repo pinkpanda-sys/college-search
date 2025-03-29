@@ -1,0 +1,144 @@
+[28-Mar-2025 22:42:20 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:48 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:51 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:51 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:51 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:51 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:51 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:52 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:52 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:52 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:52 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:47:52 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:48:06 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 22:48:06 Europe/Berlin] API Error: Unknown column 'ranking' in 'where clause'
+[28-Mar-2025 22:56:04 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:04 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:05 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:05 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:05 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:05 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:05 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:07 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:56:15 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:03 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:03 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 22:59:03 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:03 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 22:59:04 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:04 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 22:59:04 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:04 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 22:59:04 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:04 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 22:59:20 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:20 Europe/Berlin] Received POST data: {"ranking":"56","name":"presidency college","contact":"9845813889","fees":"4123","location":"werfqwrqw","maplink":"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d1991134.2795419816!2d75.21366485624999!3d12.911954500000016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae149d69aee835%3A0x50b18932306e1958!2sNational%20Institute%20of%20Fashion%20Technology!5e0!3m2!1sen!2sin!4v1742834830788!5m2!1sen!2sin"}
+[28-Mar-2025 22:59:20 Europe/Berlin] API Error: Unknown column 'ranking' in 'where clause'
+[28-Mar-2025 22:59:30 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 22:59:30 Europe/Berlin] Received POST data: {"ranking":"56","name":"presidency college","contact":"9845813889","fees":"4123","location":"werfqwrqw","maplink":"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d1991134.2795419816!2d75.21366485624999!3d12.911954500000016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae149d69aee835%3A0x50b18932306e1958!2sNational%20Institute%20of%20Fashion%20Technology!5e0!3m2!1sen!2sin!4v1742834830788!5m2!1sen!2sin"}
+[28-Mar-2025 22:59:30 Europe/Berlin] API Error: Unknown column 'ranking' in 'where clause'
+[28-Mar-2025 23:00:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:00:50 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:01:14 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:01:14 Europe/Berlin] API Error: Database error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:06:56 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:06:56 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:06:57 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:06:57 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:06:57 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:06:57 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:00 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:00 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:01 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:01 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:01 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:01 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:02 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:02 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:02 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:02 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:07:32 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:07:32 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:12:20 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:12:20 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:12:21 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:12:21 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:38 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:38 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:39 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:39 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:39 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:39 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:14:39 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:14:39 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:16:34 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:16:34 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:16:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:16:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:16:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:16:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:16:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:16:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:16:35 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:16:35 Europe/Berlin] API Error: Unknown column 'ranking' in 'order clause'
+[28-Mar-2025 23:19:12 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:20:01 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 23:21:27 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 23:21:32 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:21:53 Europe/Berlin] API Request: POST /collegefinder/api/colleges.php
+[28-Mar-2025 23:21:54 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:28:06 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:36:15 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:36:27 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[28-Mar-2025 23:56:28 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 00:00:37 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 05:48:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 09:50:02 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 10:50:02 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 10:50:02 Europe/Berlin] API Error: Table 'campuscompass.colleges' doesn't exist
+[29-Mar-2025 11:38:18 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 11:38:18 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:38:31 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php?id=1
+[29-Mar-2025 11:38:31 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:38:39 Europe/Berlin] API Request: PUT /collegefinder/api/colleges.php
+[29-Mar-2025 11:38:39 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:38:39 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 11:38:39 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:39:24 Europe/Berlin] API Request: DELETE /collegefinder/api/colleges.php?id=56
+[29-Mar-2025 11:39:24 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:39:24 Europe/Berlin] API Error: Cannot delete or update a parent row: a foreign key constraint fails (`campascompass`.`reviews`, CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`rankings`) ON DELETE CASCADE)
+[29-Mar-2025 11:39:46 Europe/Berlin] API Request: DELETE /collegefinder/api/colleges.php?id=40
+[29-Mar-2025 11:39:46 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 11:39:46 Europe/Berlin] API Error: Cannot delete or update a parent row: a foreign key constraint fails (`campascompass`.`reviews`, CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`rankings`) ON DELETE CASCADE)
+[29-Mar-2025 17:32:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 17:32:50 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 17:32:53 Europe/Berlin] API Request: DELETE /collegefinder/api/colleges.php?id=7
+[29-Mar-2025 17:32:53 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 17:32:53 Europe/Berlin] API Error: Cannot delete or update a parent row: a foreign key constraint fails (`campascompass`.`reviews`, CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`rankings`) ON DELETE CASCADE)
+[29-Mar-2025 17:38:50 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 17:38:50 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 17:56:39 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 17:56:39 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 18:33:43 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 18:33:43 Europe/Berlin] Connected to database: campascompass
+[29-Mar-2025 18:34:34 Europe/Berlin] API Request: GET /collegefinder/api/colleges.php
+[29-Mar-2025 18:34:34 Europe/Berlin] Connected to database: campascompass

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Campus Compass</title>
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../landingpage/home.html">
+                    <h1>campus<span>compass</span></h1>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="about.html" class="nav-link active">About</a></li>
+                    <li><a href="../navpages/college-search.html" class="nav-link">Find Colleges</a></li>
+                    <li><a href="../navpages/scholarships.html" class="nav-link">Scholarships</a></li>
+                    <li><a href="../navpages/resources.html" class="nav-link">Resources</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars" onclick="showMenu()"></i>
+            </div>
+            <div class="cta-buttons">
+                <a href="../login/login.html" class="login-btn">Log In</a>
+                <a href="../login/register.html" class="signup-btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="hero-background">
+            <div class="moving-circles">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-4"></div>
+            </div>
+        </div>
+        <div class="about-hero-content">
+            <h1>Our <span class="highlight-text">Mission</span></h1>
+            <p>Empowering students to make informed educational decisions through innovative technology and personalized guidance.</p>
+            <div class="about-stats">
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="stat-number" data-count="10">0</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-icon"><i class="fas fa-school"></i></div>
+                    <div class="stat-number" data-count="4500">0</div>
+                    <div class="stat-label">Partner Colleges</div>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-number" data-count="2">0</div>
+                    <div class="stat-label">Million Student Success Stories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section with 3D Timeline -->
+    <section class="our-story">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Our Journey</h2>
+            <p>From a small startup to the premier college guidance platform</p>
+        </div>
+        
+        <div class="timeline-wrapper">
+            <div class="timeline-scene" id="timeline-scene">
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-year">2013</div>
+                        <div class="timeline-content">
+                            <h3>The Beginning</h3>
+                            <p> Campus Compas was founded by three college graduates who experienced firsthand the challenges of finding the right college match.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="campus compass founding team">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <h3>First Major Milestone</h3>
+                            <p>Reached 100,000 users and partnered with 500 colleges across the country to provide exclusive insights.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Team celebrating milestone">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-year">2017</div>
+                        <div class="timeline-content">
+                            <h3>AI Integration</h3>
+                            <p>Introduced our proprietary AI matching algorithm, improving college recommendations by analyzing thousands of data points.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="AI technology visualization">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">
+                            <h3>Global Expansion</h3>
+                            <p>Expanded our services to international universities, helping students find opportunities worldwide.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1524055988636-436cfa46e59e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Global map with connections">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-content">
+                            <h3>Scholarship Platform</h3>
+                            <p>Launched our scholarship matching platform, helping students secure over $30 million in financial aid.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Scholarship celebration">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h3>Today</h3>
+                            <p>Celebrating 10 years of helping students achieve their educational dreams, with over 2 million success stories.</p>
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Current team celebration">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section with Floating Cards -->
+    <section class="team-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Meet Our Team</h2>
+            <p>The passionate people behind campus compass</p>
+        </div>
+        
+        <div class="team-cards">
+            <div class="team-card" data-aos="flip-left">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                        <h3>Sarah Johnson</h3>
+                        <p>Co-Founder & CEO</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Sarah Johnson</h3>
+                        <p>Former educational consultant with a passion for making college accessible to all.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Michael Chen">
+                        <h3>Michael Chen</h3>
+                        <p>Co-Founder & CTO</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Michael Chen</h3>
+                        <p>AI specialist with a background in educational technology and data science.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jessica Rodriguez">
+                        <h3>Jessica Rodriguez</h3>
+                        <p>Co-Founder & COO</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Jessica Rodriguez</h3>
+                        <p>Former university administrator with insights into the admissions process.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Walker">
+                        <h3>David Walker</h3>
+                        <p>Chief Data Scientist</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>David Walker</h3>
+                        <p>Expert in predictive analytics and machine learning algorithms for education.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section with Interactive Elements -->
+    <section class="values-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Our Core Values</h2>
+            <p>The guiding principles that drive our mission forward</p>
+        </div>
+        
+        <div class="values-container">
+            <!-- Interactive value cards with hover effects and animation -->
+            <div class="value-card" data-aos="fade-up">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                </div>
+                <h3>Innovation</h3>
+                <p>Constantly pushing boundaries in educational technology to create tools that transform the college search experience.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Proprietary Algorithms</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <h3>Accessibility</h3>
+                <p>Making quality college guidance available to students of all backgrounds, regardless of socioeconomic status.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">500K+</span>
+                        <span class="stat-label">Underserved Students Helped</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <h3>Data-Driven Excellence</h3>
+                <p>Using comprehensive data analytics and real outcomes to continuously refine our matching algorithms and recommendations.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">1.2B+</span>
+                        <span class="stat-label">Data Points Analyzed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+                <h3>Integrity</h3>
+                <p>Providing honest, unbiased information that puts students' interests first, with transparent recommendations free from hidden agendas.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Transparent College Data</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <h3>Empathy</h3>
+                <p>Understanding the stress and challenges of the college application process and designing supportive tools with compassion.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">4.9/5</span>
+                        <span class="stat-label">Student Satisfaction Rating</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-card featured-value" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-icon-wrapper">
+                    <div class="value-icon-bg pulse-animation">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
+                <h3>Global Perspective</h3>
+                <p>Embracing diversity and international education opportunities to prepare students for success in a connected world.</p>
+                <div class="value-stats">
+                    <div class="stat">
+                        <span class="stat-number">80+</span>
+                        <span class="stat-label">Countries Represented</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="values-cta" data-aos="fade-up">
+            <p>See how our values translate into real impact for students worldwide</p>
+            <a href="../success-stories/index.html" class="values-btn">Read Success Stories</a>
+        </div>
+    </section>
+
+    <!-- Testimonials with Staggered Animation -->
+    <section class="about-testimonials">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Hear From Our Partners</h2>
+            <p>What colleges and universities say about working with us</p>
+        </div>
+        
+        <div class="testimonial-bubbles">
+            <div class="testimonial-bubble" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                <div class="bubble-content">
+                    <p>"Campus Compass has revolutionized how we connect with prospective students. Their platform brings us qualified candidates who are truly excited about our programs."</p>
+                    <div class="bubble-author">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Dr. William Carter">
+                        <div class="author-info">
+                            <h4>Dr. William Carter</h4>
+                            <p>Dean of Admissions, Stanford University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-bubble" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="center-bottom">
+                <div class="bubble-content">
+                    <p>"The data insights provided by campus compass help us better understand student needs and tailor our outreach efforts accordingly."</p>
+                    <div class="bubble-author">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Dr. Elizabeth Tanner">
+                        <div class="author-info">
+                            <h4>Dr. Elizabeth Tanner</h4>
+                            <p>VP of Enrollment, MIT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-bubble" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="center-bottom">
+                <div class="bubble-content">
+                    <p>"We've seen a 40% increase in qualified applicants since partnering with Campus Compas. Their matching algorithm truly works."</p>
+                    <div class="bubble-author">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Professor James Wilson">
+                        <div class="author-info">
+                            <h4>Professor James Wilson</h4>
+                            <p>Director of Admissions, Oxford University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Mission CTA -->
+    <section class="join-mission">
+        <div class="mission-bg"></div>
+        <div class="mission-content" data-aos="fade-up">
+            <h2>Join Our Mission</h2>
+            <p>Help us transform the college search process and make quality education accessible to all students.</p>
+            <div class="mission-buttons">
+                <a href="../contact/contact.html" class="primary-mission-btn">Contact Us</a>
+                <a href="../resources/career-planning.html" class="secondary-mission-btn">View Careers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#4a6cf7" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,266.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Campus<span>Compass</span></h2>
+                <p>Your ultimate guide to college planning and success</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../landingpage/home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="../navpages/college-search.html">Find Colleges</a></li>
+                        <li><a href="../navpages/scholarships.html">Scholarships</a></li>
+                        <li><a href="../navpages/resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="../navpages/resources.html#college-advice">College Advice</a></li>
+                        <li><a href="../navpages/resources.html#application-tips">Application Tips</a></li>
+                        <li><a href="../navpages/resources.html#financial-aid">Financial Aid Guide</a></li>
+                        <li><a href="../navpages/resources.html#campus-life">Campus Life</a></li>
+                        <li><a href="../navpages/resources.html#career-planning">Career Planning</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="../contact/contact.html">Contact Us</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
+                        <li><a href="../terms/terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025Campus Compass. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="about.js"></script>
+</body>
+</html> 

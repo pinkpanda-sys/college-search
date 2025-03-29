@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Search | Campus Compass</title>
+    <link rel="stylesheet" href="college-search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+            <h2 class="loading-text">Campus<span>Compass</span></h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../landingpage/home.html">
+                    <h1>Campus<span>Compass</span></h1>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times close-menu" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="../navpages/about.html">About</a></li>
+                    <li><a href="../navpages/college-search.html" class="active">Find Colleges</a></li>
+                    <li><a href="../navpages/scholarships.html">Scholarships</a></li>
+                    <li><a href="../navpages/resources.html">Resources</a></li>
+                    <li><a href="../contact/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars" onclick="showMenu()"></i>
+            </div>
+            <div class="cta-buttons">
+                <a href="../login/login.html" class="login-btn">Log In</a>
+                <a href="../login/signup.html" class="signup-btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Find Your <span class="highlight">Perfect</span> College</h1>
+            <p>Discover the best educational institutions tailored to your preferences and goals</p>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="collegeSearch" placeholder="Search by college name, location or program...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="india">India</button>
+                    <button class="filter-btn" data-filter="international">International</button>
+                    <button class="filter-toggle" id="advancedFilterToggle">
+                        <i class="fas fa-sliders-h"></i> Advanced Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Filter Panel -->
+    <div class="advanced-filters" id="advancedFilters">
+        <div class="filter-grid">
+            <div class="filter-group">
+                <h3>Location</h3>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="location" value="north-india"> North India</label>
+                    <label><input type="checkbox" name="location" value="south-india"> South India</label>
+                    <label><input type="checkbox" name="location" value="east-india"> East India</label>
+                    <label><input type="checkbox" name="location" value="west-india"> West India</label>
+                    <label><input type="checkbox" name="location" value="central-india"> Central India</label>
+                    <label><input type="checkbox" name="location" value="usa"> USA</label>
+                    <label><input type="checkbox" name="location" value="uk"> UK</label>
+                    <label><input type="checkbox" name="location" value="australia"> Australia</label>
+                    <label><input type="checkbox" name="location" value="canada"> Canada</label>
+                    <label><input type="checkbox" name="location" value="europe"> Europe</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Programs</h3>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="program" value="engineering"> Engineering</label>
+                    <label><input type="checkbox" name="program" value="medicine"> Medicine</label>
+                    <label><input type="checkbox" name="program" value="business"> Business</label>
+                    <label><input type="checkbox" name="program" value="arts"> Arts & Humanities</label>
+                    <label><input type="checkbox" name="program" value="science"> Science</label>
+                    <label><input type="checkbox" name="program" value="law"> Law</label>
+                    <label><input type="checkbox" name="program" value="computer-science"> Computer Science</label>
+                    <label><input type="checkbox" name="program" value="design"> Design</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Tuition Range</h3>
+                <div class="range-slider">
+                    <div class="range-values">
+                        <span id="tuitionMin">₹0</span>
+                        <span id="tuitionMax">₹25,00,000+</span>
+                    </div>
+                    <input type="range" id="tuitionRange" min="0" max="2500000" step="50000" value="2500000">
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>College Type</h3>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="type" value="public"> Public</label>
+                    <label><input type="checkbox" name="type" value="private"> Private</label>
+                    <label><input type="checkbox" name="type" value="deemed"> Deemed University</label>
+                    <label><input type="checkbox" name="type" value="technical"> Technical Institute</label>
+                </div>
+            </div>
+        </div>
+        <div class="filter-actions">
+            <button class="reset-btn">Reset Filters</button>
+            <button class="apply-btn">Apply Filters</button>
+        </div>
+    </div>
+
+    <!-- College Results Section -->
+    <section class="college-results">
+        <div class="results-header">
+            <h2>Top Colleges</h2>
+            <div class="results-count">Showing <span id="resultsCount">20</span> colleges</div>
+            <div class="sort-options">
+                <label for="sortBy">Sort by:</label>
+                <select id="sortBy">
+                    <option value="ranking">Ranking</option>
+                    <option value="tuition-low">Tuition (Low to High)</option>
+                    <option value="tuition-high">Tuition (High to Low)</option>
+                    <option value="acceptance">Acceptance Rate</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="results-grid" id="collegeGrid">
+            <!-- Indian Colleges -->
+            <div class="college-card india" data-ranking="1" data-fees="250000" data-acceptance="5">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=IIT+B" alt="IIT Bombay Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#1</span>
+                        <span>in India</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>Indian Institute of Technology, Bombay</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">5%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">₹2.5L</span>
+                            <span class="stat-label">Annual Fees</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">A+</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">IIT Bombay is renowned for providing world-class education in engineering and technology. The institute offers comprehensive undergraduate, postgraduate and doctoral programs.</p>
+                    <div class="college-tags">
+                        <span class="tag">Engineering</span>
+                        <span class="tag">Technology</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="https://maps.google.com/?q=IIT+Bombay" target="_blank" class="btn-map"><i class="fas fa-map-marked-alt"></i> View Map</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <div class="college-card india" data-category="india science engineering" data-ranking="2" data-tuition="220000" data-acceptance="7">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=IIT+D" alt="IIT Delhi Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#2</span>
+                        <span>in India</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>Indian Institute of Technology, Delhi</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">7%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">₹2.2L</span>
+                            <span class="stat-label">Annual Tuition</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">A+</span>
+                            <span class="stat-label">NAAC Grade</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">IIT Delhi is one of India's most prestigious engineering institutions known for its cutting-edge research and innovation. The campus offers diverse programs across engineering disciplines.</p>
+                    <div class="college-tags">
+                        <span class="tag">Engineering</span>
+                        <span class="tag">Technology</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <div class="college-card india" data-category="india science" data-ranking="3" data-tuition="200000" data-acceptance="6">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=IISc" alt="IISc Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#3</span>
+                        <span>in India</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>Indian Institute of Science</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">6%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">₹2.0L</span>
+                            <span class="stat-label">Annual Tuition</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">A++</span>
+                            <span class="stat-label">NAAC Grade</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">IISc Bangalore is India's premier research institution focusing on scientific research and higher education. It offers advanced degrees in sciences, engineering, design, and management.</p>
+                    <div class="college-tags">
+                        <span class="tag">Research</span>
+                        <span class="tag">Science</span>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <!-- More Indian colleges... -->
+            <div class="college-card india" data-category="india medicine" data-ranking="4" data-tuition="120000" data-acceptance="15">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=AIIMS" alt="AIIMS Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#1</span>
+                        <span>in Medicine</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>All India Institute of Medical Sciences</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> New Delhi, Delhi</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">15%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">₹1.2L</span>
+                            <span class="stat-label">Annual Tuition</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">A++</span>
+                            <span class="stat-label">NAAC Grade</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">AIIMS is India's leading public medical school and hospital complex. It offers undergraduate, postgraduate and doctoral programs in medicine and related fields.</p>
+                    <div class="college-tags">
+                        <span class="tag">Medicine</span>
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <!-- More Indian colleges here... -->
+            
+            <!-- International Colleges -->
+            <div class="college-card international" data-category="international engineering science" data-ranking="1" data-tuition="4500000" data-acceptance="4">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=MIT" alt="MIT Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#1</span>
+                        <span>Global</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>Massachusetts Institute of Technology</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> Cambridge, USA</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">4%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$60K</span>
+                            <span class="stat-label">Annual Tuition</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">QS 1</span>
+                            <span class="stat-label">World Rank</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">MIT is a world-renowned private research university focused on scientific, technological, and other areas of scholarship. Known for pioneering research and producing notable alumni.</p>
+                    <div class="college-tags">
+                        <span class="tag">Technology</span>
+                        <span class="tag">Engineering</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <div class="college-card international" data-category="international arts science" data-ranking="2" data-tuition="4200000" data-acceptance="5">
+                <div class="college-header">
+                    <div class="college-logo">
+                        <img src="https://placehold.co/80x80?text=Harvard" alt="Harvard Logo">
+                    </div>
+                    <div class="college-badge">
+                        <span class="rank">#2</span>
+                        <span>Global</span>
+                    </div>
+                </div>
+                <div class="college-content">
+                    <h3>Harvard University</h3>
+                    <div class="college-location"><i class="fas fa-map-marker-alt"></i> Cambridge, USA</div>
+                    <div class="college-stats">
+                        <div class="stat">
+                            <span class="stat-value">5%</span>
+                            <span class="stat-label">Acceptance Rate</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$55K</span>
+                            <span class="stat-label">Annual Tuition</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">QS 3</span>
+                            <span class="stat-label">World Rank</span>
+                        </div>
+                    </div>
+                    <p class="college-desc">Harvard is one of the most prestigious universities globally, offering excellence across disciplines from humanities to sciences. The university has an unparalleled legacy in education.</p>
+                    <div class="college-tags">
+                        <span class="tag">Liberal Arts</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Business</span>
+                    </div>
+                </div>
+                <div class="college-actions">
+                    <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                    <a href="#" class="btn-details">View Details</a>
+                </div>
+            </div>
+            
+            <!-- More international colleges can be added here... -->
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button id="loadMoreBtn" class="load-more-btn">Load More Results</button>
+        </div>
+    </section>
+
+    <!-- College Comparison Modal -->
+    <div class="comparison-modal" id="comparisonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Compare Colleges</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="comparison-colleges">
+                    <div class="college-column">
+                        <div class="college-select-container">
+                            <select class="college-select" id="compareCollege1">
+                                <option value="" selected disabled>Select first college</option>
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="comparison-data" id="compareData1"></div>
+                    </div>
+                    <div class="college-column">
+                        <div class="college-select-container">
+                            <select class="college-select" id="compareCollege2">
+                                <option value="" selected disabled>Select second college</option>
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="comparison-data" id="compareData2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-logo">
+                <h2>Campus<span>Compass</span></h2>
+                <p>Your ultimate guide to finding the perfect college match</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="../navpages/college-search.html">College Search</a></li>
+                        <li><a href="../navpages/scholarships.html">Scholarships</a></li>
+                        <li><a href="#">Career Paths</a></li>
+                        <li><a href="#">Admission Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="../navpages/about.html">About Us</a></li>
+                        <li><a href="../contact/contact.html">Contact</a></li>
+                        <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Subscribe to our newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Campus Compass. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="college-search.js"></script>
+</body>
+</html> 

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Blog | Campus Compass</title>
+    <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Isotope for filtering -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../landingpage/home.html">
+                    <h1>Campus<span>Compass</span></h1>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times close-menu" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="../navpages/about.html" class="nav-link">About</a></li>
+                    <li><a href="../navpages/find-colleges.html" class="nav-link">Find Colleges</a></li>
+                    <li><a href="../navpages/scholarships.html" class="nav-link">Scholarships</a></li>
+                    <li><a href="resources.html" class="nav-link active">Resources</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars" onclick="showMenu()"></i>
+            </div>
+            <div class="cta-buttons">
+                <a href="../login/login.html" class="login-btn">Log In</a>
+                <a href="../login/signup.html" class="signup-btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="resources-hero">
+        <div class="light-beams">
+            <div class="beam beam-1"></div>
+            <div class="beam beam-2"></div>
+            <div class="beam beam-3"></div>
+        </div>
+        <div class="resources-hero-content">
+            <h1>Knowledge <span class="text-gradient">Center</span></h1>
+            <p>Discover articles, guides, and resources to help you navigate your college journey</p>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search for articles, tips, and guides..." id="resourceSearch">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="featured-tags">
+                <span>Popular Topics:</span>
+                <a href="#" class="tag" data-filter=".application">Application Tips</a>
+                <a href="#" class="tag" data-filter=".financial">Financial Aid</a>
+                <a href="#" class="tag" data-filter=".essays">Essay Writing</a>
+                <a href="#" class="tag" data-filter=".interviews">Interviews</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Filter Section -->
+    <section class="filter-section" id="college-advice">
+        <div class="filter-container">
+            <div class="filter-header">
+                <h2>Browse Resources</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="*">All</button>
+                <button class="filter-btn" data-filter=".college-advice">College Advice</button>
+                <button class="filter-btn" data-filter=".application-tips" id="application-tips">Application Tips</button>
+                <button class="filter-btn" data-filter=".financial-aid" id="financial-aid">Financial Aid</button>
+                <button class="filter-btn" data-filter=".campus-life" id="campus-life">Campus Life</button>
+                <button class="filter-btn" data-filter=".career-planning" id="career-planning">Career Planning</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Grid Section -->
+    <section class="resources-grid">
+        <div class="grid-container">
+            <!-- College Advice Articles -->
+            <div class="resource-item college-advice featured">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Choosing the Right College">
+                    <div class="resource-tag">Featured</div>
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Aug 15, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> College Advice</span>
+                    </div>
+                    <h3>How to Choose the Right College: 10 Factors to Consider</h3>
+                    <p>Looking beyond rankings to find the college that's the best fit for your academic goals, personality, and career aspirations.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item college-advice">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Campus Visit Tips">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jul 28, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> College Advice</span>
+                    </div>
+                    <h3>Making the Most of Campus Visits: What to Look For</h3>
+                    <p>Tips on how to evaluate campus culture, academic resources, housing options, and student life during your college visits.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item college-advice">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="College Rankings">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jun 12, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> College Advice</span>
+                    </div>
+                    <h3>Understanding College Rankings: What They Do (and Don't) Tell You</h3>
+                    <p>A deep dive into how rankings are calculated and why they should be just one factor in your college decision process.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Application Tips Articles -->
+            <div class="resource-item application-tips application">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Application Timeline">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Sep 5, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Application Tips</span>
+                    </div>
+                    <h3>The Ultimate College Application Timeline: Junior and Senior Year</h3>
+                    <p>A month-by-month breakdown of what you should be doing to prepare for and complete your college applications.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item application-tips essays featured">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="College Essays">
+                    <div class="resource-tag">Featured</div>
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Aug 22, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Application Tips</span>
+                    </div>
+                    <h3>Crafting a Standout College Essay: From Brainstorming to Final Draft</h3>
+                    <p>Learn how to write a compelling personal statement that showcases your unique voice and experiences to admissions committees.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item application-tips interviews">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Interview Preparation">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jul 18, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Application Tips</span>
+                    </div>
+                    <h3>Ace Your College Interview: Questions to Prepare For and Questions to Ask</h3>
+                    <p>Strategies for making a positive impression during college interviews, including practice questions and expert advice.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Financial Aid Articles -->
+            <div class="resource-item financial-aid financial">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="FAFSA Guide">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Oct 1, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Financial Aid</span>
+                    </div>
+                    <h3>FAFSA Simplified: A Step-by-Step Guide to Applying for Federal Aid</h3>
+                    <p>Everything you need to know about completing the Free Application for Federal Student Aid accurately and on time.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item financial-aid financial">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Scholarship Strategies">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Sep 15, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Financial Aid</span>
+                    </div>
+                    <h3>Scholarship Hunting Strategies: Finding Money for College</h3>
+                    <p>Tips for finding and applying for scholarships, including lesser-known sources and strategies for writing winning applications.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item financial-aid financial">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Financial Aid Packages">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Aug 5, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Financial Aid</span>
+                    </div>
+                    <h3>Understanding Financial Aid Packages: How to Compare Offers</h3>
+                    <p>Learn how to decode financial aid offers and make apples-to-apples comparisons between different colleges.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Campus Life Articles -->
+            <div class="resource-item campus-life">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Freshman Tips">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Aug 28, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Campus Life</span>
+                    </div>
+                    <h3>Freshman Year Survival Guide: Tips from Seniors Who've Been There</h3>
+                    <p>Practical advice for navigating your first year on campus, from managing time to building relationships with professors.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item campus-life">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Dorm Essentials">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jul 10, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Campus Life</span>
+                    </div>
+                    <h3>Dorm Room Essentials: What to Bring and What to Leave Behind</h3>
+                    <p>A comprehensive packing list for college living, with tips for maximizing small spaces and coordinating with roommates.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item campus-life featured">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Campus Involvement">
+                    <div class="resource-tag">Featured</div>
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jun 25, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Campus Life</span>
+                    </div>
+                    <h3>Getting Involved on Campus: Finding Your Community in College</h3>
+                    <p>Exploring the benefits of student organizations, clubs, and campus activities for building your network and enhancing your college experience.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Career Planning Articles -->
+            <div class="resource-item career-planning">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Internship Guide">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Sep 20, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Career Planning</span>
+                    </div>
+                    <h3>Landing Your Dream Internship: A Guide for College Students</h3>
+                    <p>Strategies for finding, applying for, and making the most of internships that align with your career goals.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item career-planning">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1507209281643-9a2f2d5eaa35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Major Exploration">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> Jul 5, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Career Planning</span>
+                    </div>
+                    <h3>Exploring Majors: How to Find Your Academic Passion</h3>
+                    <p>Advice for undecided students on discovering and evaluating potential majors based on interests, strengths, and career prospects.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="resource-item career-planning">
+                <div class="resource-image">
+                    <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Resume Building">
+                </div>
+                <div class="resource-content">
+                    <div class="resource-meta">
+                        <span class="resource-date"><i class="far fa-calendar-alt"></i> May 18, 2023</span>
+                        <span class="resource-category"><i class="fas fa-tag"></i> Career Planning</span>
+                    </div>
+                    <h3>Building a Strong Resume in College: What Employers Really Look For</h3>
+                    <p>Tips for creating a resume that stands out, highlighting relevant experiences and skills that will impress future employers.</p>
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+       
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#ffffff" fill-opacity="1" d="M0,224L48,208C96,192,192,160,288,165.3C384,171,480,213,576,218.7C672,224,768,192,864,181.3C960,171,1056,181,1152,186.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest college advice, application tips, and resources delivered to your inbox.</p>
+            </div>
+            
+            <div class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="subscribe-btn">Subscribe <i class="fas fa-paper-plane"></i></button>
+            </div>
+            
+            <div class="newsletter-info">
+                <p><i class="fas fa-lock"></i> Your information is secure and will never be shared.</p>
+                <p><i class="fas fa-envelope"></i> We send emails twice a month with valuable content.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#4a6cf7" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,266.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Campus<span>Compass</span></h2>
+                <p>Your ultimate guide to college planning and success</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../landingpage/home.html">Home</a></li>
+                        <li><a href="../navpages/about.html">About Us</a></li>
+                        <li><a href="../navpages/find-colleges.html">Find Colleges</a></li>
+                        <li><a href="../navpages/scholarships.html">Scholarships</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#college-advice">College Advice</a></li>
+                        <li><a href="#application-tips">Application Tips</a></li>
+                        <li><a href="#financial-aid">Financial Aid Guide</a></li>
+                        <li><a href="#campus-life">Campus Life</a></li>
+                        <li><a href="#career-planning">Career Planning</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="../contact/contact.html">Contact Us</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
+                        <li><a href="../terms/terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Campus Compass. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="resources.js"></script>
+</body>
+</html> 

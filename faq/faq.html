@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | Campus Compass</title>
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../landingpage/home.html">
+                    <h1>Campus<span>Compass</span></h1>
+                </a>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times close-menu" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="../navpages/about.html" class="nav-link">About</a></li>
+                    <li><a href="../navpages/find-colleges.html" class="nav-link">Find Colleges</a></li>
+                    <li><a href="../navpages/scholarships.html" class="nav-link">Scholarships</a></li>
+                    <li><a href="../navpages/resources.html" class="nav-link">Resources</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars" onclick="showMenu()"></i>
+            </div>
+            <div class="cta-buttons">
+                <a href="../login/login.html" class="login-btn">Log In</a>
+                <a href="../login/signup.html" class="signup-btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Floating Questions -->
+    <section class="faq-hero">
+        <div class="floating-questions">
+            <div class="floating-question q1">How do I choose the right college?</div>
+            <div class="floating-question q2">What scholarships are available?</div>
+            <div class="floating-question q3">How do I write a good essay?</div>
+            <div class="floating-question q4">When should I apply?</div>
+            <div class="floating-question q5">How do I prepare for college?</div>
+            <div class="floating-question q6">What major should I choose?</div>
+        </div>
+        <div class="hero-content">
+            <h1>Frequently Asked <span class="highlight">Questions</span></h1>
+            <p>Find answers to common questions about college applications, financial aid, and more.</p>
+            
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="faqSearch" placeholder="Search for questions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-tags">
+                    <span class="search-tag" data-filter="applications">Applications</span>
+                    <span class="search-tag" data-filter="financial">Financial Aid</span>
+                    <span class="search-tag" data-filter="admissions">Admissions</span>
+                    <span class="search-tag" data-filter="careers">Careers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Categories Section -->
+    <section class="faq-categories">
+        <div class="category-container">
+            <div class="category-item" data-category="general">
+                <div class="category-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>General</h3>
+                <p>Basic information about our services</p>
+            </div>
+            
+            <div class="category-item" data-category="applications">
+                <div class="category-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Applications</h3>
+                <p>Tips for the application process</p>
+            </div>
+            
+            <div class="category-item" data-category="financial">
+                <div class="category-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Financial Aid</h3>
+                <p>Scholarships and funding options</p>
+            </div>
+            
+            <div class="category-item" data-category="admissions">
+                <div class="category-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>Admissions</h3>
+                <p>Acceptance criteria and decision process</p>
+            </div>
+            
+            <div class="category-item" data-category="careers">
+                <div class="category-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Careers</h3>
+                <p>Job prospects and career guidance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="faq-accordion">
+        <div class="accordion-container">
+            <div class="category-title active" id="general">
+                <h2>General Questions</h2>
+                <div class="category-indicator"><span>10 Questions</span></div>
+            </div>
+            
+            <div class="accordion-group general">
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>What is Campus Compass and how does it help students?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Campus Compass is a comprehensive college search and planning platform that helps students find their perfect college match. We provide tools for college exploration, comparison, scholarship matching, and application guidance. Our platform uses advanced algorithms to recommend colleges based on your academic profile, preferences, and career goals.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>Is Campus Compass completely free to use?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Campus Compass offers both free and premium features. Basic college search, scholarship information, and general resources are available for free. Our premium membership provides advanced features like personalized college recommendations, application tracking, essay reviews, and one-on-one counseling sessions. We also offer financial aid for students who qualify.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How accurate is your college matching system?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Our college matching system has a 95% satisfaction rate among users. It analyzes over 100 data points to create personalized recommendations. The algorithm considers academic fit, financial considerations, campus culture, location preferences, and career goals. We regularly update our database with the latest college information and refine our matching algorithm based on student outcomes and feedback.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How do I create an account on Campus Compass?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Creating an account is simple. Click the "Sign Up" button in the top right corner of any page. You can register using your email address or continue with Google or Facebook. After registration, you'll complete a brief questionnaire about your academic background, interests, and preferences to help us provide personalized recommendations and resources.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-title" id="applications">
+                <h2>Application Questions</h2>
+                <div class="category-indicator"><span>8 Questions</span></div>
+            </div>
+            
+            <div class="accordion-group applications">
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>When should I start the college application process?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Ideally, you should start preparing for college applications in your junior year of high school. Begin researching colleges, preparing for standardized tests, and engaging in meaningful extracurricular activities. By the summer before senior year, you should have a list of target schools and be working on your application essays. Early preparation allows you to meet early decision/early action deadlines and reduces last-minute stress.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How many colleges should I apply to?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We recommend applying to 6-10 colleges with a balanced mix of reach, target, and safety schools. Reach schools are those where your academic profile is below their average admitted student. Target schools align with your profile, and safety schools are those where your profile is stronger than their average admitted student. This approach maximizes your chances of acceptance while keeping the application process manageable.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>What makes a college essay stand out?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A standout college essay is authentic, specific, and reflective. Rather than listing accomplishments (which appear elsewhere in your application), focus on telling a personal story that reveals your character, values, or growth. Use concrete details and examples rather than generalizations. Show how you've developed as a person and what you'll bring to the campus community. Most importantly, use your genuine voice rather than trying to sound "impressive."</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How important are extracurricular activities in college applications?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Extracurricular activities are important, but depth of involvement matters more than quantity. Colleges prefer to see sustained commitment and leadership in a few activities rather than superficial participation in many. Focus on activities that genuinely interest you and align with your strengths or potential major. Quality extracurriculars demonstrate time management, passion, leadership, and other skills that contribute to campus life.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-title" id="financial">
+                <h2>Financial Aid Questions</h2>
+                <div class="category-indicator"><span>7 Questions</span></div>
+            </div>
+            
+            <div class="accordion-group financial">
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>When should I apply for financial aid?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You should apply for financial aid as soon as the FAFSA (Free Application for Federal Student Aid) becomes available on October 1 of your senior year. Many colleges and state aid programs have priority deadlines, and some financial aid is distributed on a first-come, first-served basis. Filing early maximizes your chances of receiving all the aid you're eligible for. Remember to also search for and apply to private scholarships throughout your junior and senior years.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>What's the difference between grants, scholarships, and loans?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Grants and scholarships are free money that doesn't need to be repaid. Grants are typically need-based (determined by your financial situation), while scholarships can be merit-based (awarded for academic, athletic, or other achievements) or need-based. Loans must be repaid with interest. Federal student loans usually have more favorable terms than private loans, including fixed interest rates and various repayment options. Always prioritize grants and scholarships first, followed by federal loans if needed.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How do I find scholarships I'm eligible for?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Campus Compass's Scholarship Finder tool matches you with scholarships based on your profile, including academic achievements, demographics, interests, and major. Beyond our platform, check with your high school counselor, local community organizations, and potential colleges. Many scholarships are available based on specific criteria like field of study, heritage, religious affiliation, or special talents. Start searching early and apply to as many as you qualify for, even smaller scholarships that add up quickly.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>Can I negotiate my financial aid package?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, you can appeal or negotiate your financial aid package, especially if your financial circumstances have changed or you've received better offers from comparable institutions. Contact the college's financial aid office and politely ask about the appeals process. Be prepared to provide documentation of any changes in financial circumstances or competing offers. Some colleges are more flexible than others, but it's always worth asking respectfully—the worst they can say is no.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-title" id="admissions">
+                <h2>Admissions Questions</h2>
+                <div class="category-indicator"><span>6 Questions</span></div>
+            </div>
+            
+            <div class="accordion-group admissions">
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>What are colleges looking for in applicants?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Colleges evaluate applicants holistically, considering academic achievement, intellectual curiosity, character, potential contributions to campus, and personal background. While GPA and test scores demonstrate academic capability, colleges also value authentic engagement in extracurricular activities, leadership potential, community involvement, and personal growth. Many institutions seek a diverse student body with varied perspectives, experiences, and talents. Your application should highlight what makes you unique and how you'll contribute to the campus community.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How important are standardized tests (SAT/ACT) in college admissions?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>The importance of standardized tests varies by institution, and many colleges have adopted test-optional policies. At test-required schools, these scores remain significant but are considered alongside other factors like GPA, course rigor, and extracurriculars. At test-optional schools, you can decide whether submitting scores will strengthen your application. Generally, if your scores are at or above the college's middle 50% range, submitting them is beneficial. If they're significantly lower, you might choose not to submit them and emphasize other strengths.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>What's the difference between Early Decision, Early Action, and Regular Decision?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Early Decision (ED) is binding—if accepted, you must attend that college and withdraw other applications. This demonstrates strong interest but limits financial aid comparison. Early Action (EA) is non-binding—you apply early and receive an early decision, but can still apply to other schools and compare offers. Regular Decision has later deadlines and notification dates. ED/EA can boost admission chances at some schools, but they're best for students who have a clear first choice (ED) or want to spread out the application process (EA).</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How do colleges evaluate transfer applicants?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>For transfer applicants, college GPA typically becomes the most important academic factor, though high school records may still be considered for students with fewer college credits. Transfer admission focuses on academic performance in college-level courses, particularly in subjects related to your intended major. Colleges also evaluate your reasons for transferring, which should demonstrate thoughtful consideration rather than impulsive decision-making. Strong letters of recommendation from college professors can significantly strengthen transfer applications.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-title" id="careers">
+                <h2>Career Questions</h2>
+                <div class="category-indicator"><span>5 Questions</span></div>
+            </div>
+            
+            <div class="accordion-group careers">
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How do I choose the right major if I'm undecided?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>If you're undecided about your major, start by exploring your interests, values, and strengths. Take a variety of courses in your first year to discover what subjects engage you most. Consider using assessment tools like Campus Compass's Major Explorer, which matches your preferences and aptitudes to potential fields of study. Remember that many successful professionals work in fields unrelated to their college majors, and most colleges allow you to change majors. Focus on developing transferable skills like critical thinking, communication, and problem-solving that apply across numerous career paths.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How important are internships during college?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Internships are extremely valuable for career development and post-graduation job prospects. They provide practical experience, help you build industry connections, and allow you to apply classroom knowledge in real-world settings. Many employers use internships as a pipeline for hiring full-time employees. Beyond career benefits, internships help you determine whether a particular field or workplace environment is right for you. Aim to complete at least one internship before graduation, ideally in your junior or senior year after you've completed relevant coursework.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>Should I go to graduate school right after college?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Whether to attend graduate school immediately after college depends on your field and career goals. For some professions (medicine, law, academic research), advanced degrees are essential. For others, work experience may be more valuable initially. Consider whether graduate education will significantly enhance your career prospects and earning potential. Many students benefit from working for a few years before pursuing graduate studies, gaining clarity about their interests and potentially employer tuition assistance. Research the typical paths in your desired field and speak with professionals about their recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <h3>How do I prepare for a career while still in college?</h3>
+                        <span class="accordion-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Career preparation should begin early in your college journey. Visit your campus career center for resources, counseling, and job fair information. Build relevant skills through coursework, internships, research projects, and student organizations. Develop your professional network by connecting with professors, alumni, and industry professionals through LinkedIn and informational interviews. Create a strong resume and online presence highlighting your accomplishments. Consider pursing certifications or technical skills that complement your degree and are valued in your target industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Not Finding Answer Section -->
+    <section class="not-finding">
+        <div class="not-finding-content">
+            <h2>Still Have Questions?</h2>
+            <p>Can't find what you're looking for? We're here to help.</p>
+            <div class="help-options">
+                <a href="../contact/contact.html" class="help-option">
+                    <div class="help-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Contact Us</h3>
+                    <p>Send us a message and we'll get back to you within 24 hours.</p>
+                </a>
+                
+                <a href="#" class="help-option">
+                    <div class="help-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team for immediate assistance.</p>
+                </a>
+                
+                <a href="#" class="help-option">
+                    <div class="help-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Speak with a college advisor at (555) 123-4567.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#4a6cf7" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,266.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Campus<span>Compass</span></h2>
+                <p>Your ultimate guide to college planning and success</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../landingpage/home.html">Home</a></li>
+                        <li><a href="../navpages/about.html">About Us</a></li>
+                        <li><a href="../navpages/find-colleges.html">Find Colleges</a></li>
+                        <li><a href="../navpages/scholarships.html">Scholarships</a></li>
+                        <li><a href="../navpages/resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="../navpages/resources.html#college-advice">College Advice</a></li>
+                        <li><a href="../navpages/resources.html#application-tips">Application Tips</a></li>
+                        <li><a href="../navpages/resources.html#financial-aid">Financial Aid Guide</a></li>
+                        <li><a href="../navpages/resources.html#campus-life">Campus Life</a></li>
+                        <li><a href="../navpages/resources.html#career-planning">Career Planning</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="../contact/contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="../terms/terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Campus Compass. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="faq.js"></script>
+</body>
+</html> 

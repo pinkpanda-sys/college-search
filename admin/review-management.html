@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Management | Campus Compass Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="review-management.css">
+    <style>
+    /* Critical styles for review display */
+    .review-container {
+        margin-left: 250px;
+        padding: 20px;
+    }
+
+    .review-filters, .review-stats {
+        display: flex;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-right: 15px;
+        margin-bottom: 15px;
+        min-width: 150px;
+        flex: 1;
+    }
+
+    .review-filter-item {
+        margin-right: 15px;
+        margin-bottom: 10px;
+    }
+
+    .reviews-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+    }
+
+    .review-card {
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .loading-indicator, .no-data-message {
+        text-align: center;
+        padding: 30px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .review-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .review-modal-content {
+        background: white;
+        margin: 10% auto;
+        padding: 20px;
+        width: 70%;
+        max-width: 700px;
+        border-radius: 5px;
+    }
+
+    /* Ensure visibility of critical elements */
+    #reviewsList, #loadingIndicator, #noDataMessage, #reviewModal {
+        visibility: visible !important;
+        display: block;
+    }
+
+    #loadingIndicator, #noDataMessage {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="admin-sidebar">
+        <div class="admin-logo">
+            <img src="../assets/images/logo.png" alt="Campus Compass">
+            <h2>Admin Panel</h2>
+        </div>
+        <nav class="admin-nav">
+            <a href="admin-panel.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="college-management.html"><i class="fas fa-university"></i> Colleges</a>
+            <a href="review-management.html" class="active"><i class="fas fa-star"></i> Reviews</a>
+            <a href="user-management.html"><i class="fas fa-users"></i> Users</a>
+            <a href="course-management.html"><i class="fas fa-book"></i> Courses</a>
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Exit Admin</a>
+        </nav>
+    </div>
+    
+    <div class="review-container">
+        <div class="review-header">
+            <h1>Review Management</h1>
+        </div>
+        
+        <div class="review-filters">
+            <div class="review-filter-item">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter">
+                    <option value="all">All Reviews</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+            
+            <div class="review-filter-item">
+                <label for="sourceFilter">Source:</label>
+                <select id="sourceFilter">
+                    <option value="all">All Sources</option>
+                    <option value="reviews">User Reviews</option>
+                    <option value="collegereviews">College Reviews</option>
+                </select>
+            </div>
+            
+            <div class="review-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by college name or review content...">
+            </div>
+        </div>
+        
+        <div class="review-stats">
+            <div class="stat-card total">
+                <h3>Total Reviews</h3>
+                <div class="stat-number" id="totalReviews">0</div>
+                <div class="stat-icon"><i class="fas fa-comments"></i></div>
+            </div>
+            
+            
+            
+            <div class="stat-card approved">
+                <h3>Approved Reviews</h3>
+                <div class="stat-number" id="approvedReviews">0</div>
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            </div>
+            
+            <div class="stat-card rejected">
+                <h3>Rejected Reviews</h3>
+                <div class="stat-number" id="rejectedReviews">0</div>
+                <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+            </div>
+        </div>
+        
+        <div id="noTablesWarning" style="display: none; margin-bottom: 20px; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+            <h3 style="margin-top: 0; color: #856404;">No Review Data Found</h3>
+            <p>It looks like there is no review data in your database. You need to set up the review tables first.</p>
+            <a href="../api/setup-test-reviews.php" target="_blank" style="display: inline-block; padding: 8px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; margin-top: 10px;">
+                <i class="fas fa-database"></i> Set Up Test Review Data
+            </a>
+            <button id="dismissWarningBtn" style="margin-left: 10px; padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Dismiss
+            </button>
+        </div>
+        
+        <div id="setupLinks" style="margin-bottom: 20px; text-align: right;">
+            <a href="../api/setup-collegereviews-data.php" target="_blank" style="display: inline-block; padding: 8px 16px; background-color: #8e44ad; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">
+                <i class="fas fa-database"></i> Set Up College Reviews Data
+            </a>
+        </div>
+        
+        <div class="loading-indicator" id="loadingIndicator">
+            <i class="fas fa-spinner"></i>
+            <p>Loading reviews...</p>
+        </div>
+        
+        <div class="no-data-message" id="noDataMessage">
+            <i class="fas fa-search"></i>
+            <p>No reviews found matching your criteria</p>
+        </div>
+        
+        <div class="reviews-list" id="reviewsList">
+            <!-- Review cards will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <!-- Review Modal -->
+    <div class="review-modal" id="reviewModal">
+        <div class="review-modal-content">
+            <div class="review-modal-header">
+                <h2>Review Details</h2>
+                <button class="close-modal" id="closeReviewModalBtn">&times;</button>
+            </div>
+            <div class="review-modal-body" id="reviewModalBody">
+                <!-- Review details will be inserted here -->
+            </div>
+            <div class="review-modal-footer">
+                <button class="modal-btn cancel" id="closeModalBtn">Close</button>
+                <button class="modal-btn approve" id="approveReviewBtn">Approve</button>
+                <button class="modal-btn reject" id="rejectReviewBtn">Reject</button>
+                <button class="modal-btn delete" id="deleteReviewBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+    
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 9999;">
+        <button id="debugModeBtn" style="padding: 8px 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Debug Mode
+        </button>
+    </div>
+    
+    <div id="cssConsole" style="position: fixed; bottom: 50px; right: 10px; width: 400px; max-height: 300px; background: rgba(0,0,0,0.8); color: white; font-family: monospace; font-size: 12px; padding: 10px; overflow: auto; z-index: 9998; display: none; border-radius: 4px;">
+        <div style="border-bottom: 1px solid #555; padding-bottom: 5px; margin-bottom: 5px; display: flex; justify-content: space-between;">
+            <span>Debug Console</span>
+            <span id="clearConsole" style="cursor: pointer;">Clear</span>
+        </div>
+        <div id="consoleOutput"></div>
+    </div>
+    
+    <button id="setupCollegeReviews" class="setup-button">Set Up College Reviews Data</button>
+    
+    <script src="review-management.js"></script>
+    <script src="review-debug.js"></script>
+    <script>
+    document.getElementById('debugModeBtn').addEventListener('click', function() {
+        const cssConsole = document.getElementById('cssConsole');
+        
+        // Toggle console visibility
+        cssConsole.style.display = cssConsole.style.display === 'none' ? 'block' : 'none';
+        
+        // Add debug menu if it doesn't exist
+        if (cssConsole.style.display === 'block' && !document.getElementById('debugMenu')) {
+            const debugMenu = document.createElement('div');
+            debugMenu.id = 'debugMenu';
+            debugMenu.style.marginBottom = '10px';
+            debugMenu.style.padding = '5px';
+            debugMenu.style.borderBottom = '1px solid #555';
+            
+            debugMenu.innerHTML = `
+                <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px;">
+                    <button id="setupDataBtn" style="padding: 4px 8px; background: #2ecc71; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                        Setup Test Data
+                    </button>
+                    <button id="useSimpleApiBtn" style="padding: 4px 8px; background: #3498db; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                        Use Simple API
+                    </button>
+                    <button id="forceShowSamplesBtn" style="padding: 4px 8px; background: #9b59b6; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                        Show Sample Reviews
+                    </button>
+                    <button id="inspectDomBtn" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                        Inspect DOM
+                    </button>
+                    <button id="checkApiBtn" style="padding: 4px 8px; background: #e74c3c; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                        Check API Responses
+                    </button>
+                </div>
+                <div style="font-size: 10px; color: #aaa;">
+                    Click on buttons above to perform debug actions
+                </div>
+            `;
+            
+            cssConsole.insertBefore(debugMenu, cssConsole.firstChild.nextSibling);
+            
+            // Setup button events
+            document.getElementById('setupDataBtn').addEventListener('click', function() {
+                window.open('../api/setup-test-reviews.php', '_blank');
+            });
+            
+            document.getElementById('useSimpleApiBtn').addEventListener('click', function() {
+                currentEndpointIndex = 2; // Set to the simple test API
+                loadReviews();
+            });
+            
+            document.getElementById('forceShowSamplesBtn').addEventListener('click', function() {
+                forceDisplaySampleReviews();
+            });
+            
+            document.getElementById('inspectDomBtn').addEventListener('click', function() {
+                inspectDOM();
+            });
+            
+            document.getElementById('checkApiBtn').addEventListener('click', function() {
+                checkAllApis();
+            });
+        }
+        
+        // If clicks again, run DOM inspection
+        setTimeout(inspectDOM, 500);
+    });
+
+    // Function to check all APIs
+    function checkAllApis() {
+        const consoleOutput = document.getElementById('consoleOutput');
+        if (!consoleOutput) return;
+        
+        consoleOutput.innerHTML = '<div style="color:#f39c12">Checking all API endpoints...</div>' + consoleOutput.innerHTML;
+        
+        API_ENDPOINTS.forEach((url, index) => {
+            fetch(url)
+                .then(response => {
+                    consoleOutput.innerHTML = `<div>API #${index+1} (${url}) status: ${response.status} ${response.statusText}</div>` + consoleOutput.innerHTML;
+                    return response.text();
+                })
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        const count = Array.isArray(data) ? data.length : 'not an array';
+                        consoleOutput.innerHTML = `<div>API #${index+1} returned ${count} items</div>` + consoleOutput.innerHTML;
+                    } catch (e) {
+                        consoleOutput.innerHTML = `<div style="color:#e74c3c">API #${index+1} did not return valid JSON: ${e.message}</div>` + consoleOutput.innerHTML;
+                        consoleOutput.innerHTML = `<div style="color:#e74c3c">Response starts with: ${text.substring(0, 100)}...</div>` + consoleOutput.innerHTML;
+                    }
+                })
+                .catch(error => {
+                    consoleOutput.innerHTML = `<div style="color:#e74c3c">API #${index+1} error: ${error.message}</div>` + consoleOutput.innerHTML;
+                });
+        });
+    }
+    </script>
+    <script>
+    // Enhanced console logging
+    (function() {
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        const originalConsoleWarn = console.warn;
+        const originalConsoleInfo = console.info;
+        
+        const consoleOutput = document.getElementById('consoleOutput');
+        const cssConsole = document.getElementById('cssConsole');
+        const clearConsole = document.getElementById('clearConsole');
+        const debugBtn = document.getElementById('debugModeBtn');
+        
+        // Toggle console visibility
+        debugBtn.addEventListener('click', function() {
+            cssConsole.style.display = cssConsole.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Clear console
+        clearConsole.addEventListener('click', function() {
+            consoleOutput.innerHTML = '';
+        });
+        
+        // Helper to add message to visual console
+        function addToVisualConsole(type, args) {
+            if (!consoleOutput) return;
+            
+            const line = document.createElement('div');
+            line.style.borderBottom = '1px dotted #333';
+            line.style.paddingBottom = '3px';
+            line.style.marginBottom = '3px';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            let color = '#FFFFFF';
+            
+            switch(type) {
+                case 'error': color = '#FF6B6B'; break;
+                case 'warn': color = '#FFD93D'; break;
+                case 'info': color = '#6BCB77'; break;
+                default: color = '#FFFFFF';
+            }
+            
+            const message = Array.from(args).map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+            ).join(' ');
+            
+            line.innerHTML = `<span style="color:#999">[${timestamp}]</span> <span style="color:${color}">${message}</span>`;
+            consoleOutput.appendChild(line);
+            
+            // Auto-scroll to bottom
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        // Override console methods
+        console.log = function() {
+            addToVisualConsole('log', arguments);
+            originalConsoleLog.apply(console, arguments);
+        };
+        
+        console.error = function() {
+            addToVisualConsole('error', arguments);
+            originalConsoleError.apply(console, arguments);
+        };
+        
+        console.warn = function() {
+            addToVisualConsole('warn', arguments);
+            originalConsoleWarn.apply(console, arguments);
+        };
+        
+        console.info = function() {
+            addToVisualConsole('info', arguments);
+            originalConsoleInfo.apply(console, arguments);
+        };
+    })();
+    </script>
+    <script>
+    // Force display of sample reviews if needed
+    function forceDisplaySampleReviews() {
+        console.log("Forcing display of sample reviews");
+        
+        const reviewsList = document.getElementById('reviewsList');
+        if (!reviewsList) {
+            console.error("Cannot find reviewsList element");
+            alert("Critical error: reviewsList element not found");
+            return;
+        }
+        
+        const sampleReviews = [
+            {
+                review_id: 1,
+                college_name: "Sample University",
+                rating: 4.5,
+                status: "pending",
+                review_text: "This is a sample review created directly by the debug function.",
+                user_name: "Debug User",
+                created_at: new Date().toISOString(),
+                source: "reviews"
+            },
+            {
+                review_id: 2,
+                college_name: "Test College",
+                rating: 3.5,
+                status: "approved",
+                review_text: "This is another sample review created by the debug function.",
+                user_name: "Another User",
+                created_at: new Date(Date.now() - 86400000).toISOString(),
+                source: "collegereviews"
+            }
+        ];
+        
+        // Clear existing content
+        reviewsList.innerHTML = '';
+        
+        // Update stats
+        const totalEl = document.getElementById('totalReviews');
+        const pendingEl = document.getElementById('pendingReviews');
+        const approvedEl = document.getElementById('approvedReviews');
+        const rejectedEl = document.getElementById('rejectedReviews');
+        
+        if (totalEl) totalEl.textContent = sampleReviews.length;
+        if (pendingEl) pendingEl.textContent = "1";
+        if (approvedEl) approvedEl.textContent = "1";
+        if (rejectedEl) rejectedEl.textContent = "0";
+        
+        // Create review cards
+        sampleReviews.forEach(review => {
+            const card = document.createElement('div');
+            card.className = 'review-card';
+            
+            // Format date
+            const date = new Date(review.created_at);
+            const formattedDate = date.toLocaleDateString();
+            
+            card.innerHTML = `
+                <div style="padding: 15px; border-bottom: 1px solid #eee;">
+                    <h3 style="margin: 0; font-size: 16px;">${review.college_name}</h3>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                        <span>${review.rating} <i class="fas fa-star" style="color: #f39c12;"></i></span>
+                        <span style="padding: 3px 6px; border-radius: 50px; font-size: 12px; background-color: #e8f4fc; color: #3498db;">
+                            ${review.source === 'collegereviews' ? 'College' : 'User'}
+                        </span>
+                        <span style="padding: 3px 6px; border-radius: 50px; font-size: 12px; background-color: ${
+                            review.status === 'pending' ? '#fff8e1' : 
+                            review.status === 'approved' ? '#e8f8f5' : '#feeae9'
+                        }; color: ${
+                            review.status === 'pending' ? '#f39c12' : 
+                            review.status === 'approved' ? '#2ecc71' : '#e74c3c'
+                        };">
+                            ${review.status}
+                        </span>
+                    </div>
+                </div>
+                <div style="padding: 15px;">
+                    <p style="margin: 0 0 15px 0;">${review.review_text}</p>
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #7f8c8d;">
+                        <i class="fas fa-user-circle"></i>
+                        <span>${review.user_name || 'Anonymous'}</span>
+                    </div>
+                </div>
+                <div style="padding: 15px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 13px; color: #95a5a6;">${formattedDate}</span>
+                    <div>
+                        <button style="background: none; border: none; cursor: pointer; color: #3498db; margin-right: 10px;">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        ${review.status === 'pending' ? `
+                        <button style="background: none; border: none; cursor: pointer; color: #2ecc71; margin-right: 10px;">
+                            <i class="fas fa-check"></i> Approve
+                        </button>
+                        <button style="background: none; border: none; cursor: pointer; color: #e74c3c; margin-right: 10px;">
+                            <i class="fas fa-times"></i> Reject
+                        </button>
+                        ` : ''}
+                        <button style="background: none; border: none; cursor: pointer; color: #e74c3c;">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            reviewsList.appendChild(card);
+        });
+        
+        console.log("Sample reviews added to the page");
+    }
+
+    // Add debug function to window
+    window.forceDisplaySampleReviews = forceDisplaySampleReviews;
+
+    // Update debug button
+    document.getElementById('debugModeBtn').addEventListener('click', function() {
+        const cssConsole = document.getElementById('cssConsole');
+        cssConsole.style.display = cssConsole.style.display === 'none' ? 'block' : 'none';
+        
+        // If clicks again, force display sample reviews
+        if (cssConsole.style.display === 'block') {
+            setTimeout(function() {
+                const reviewsList = document.getElementById('reviewsList');
+                if (reviewsList && reviewsList.children.length === 0) {
+                    const forceDisplay = confirm("No reviews are displayed. Would you like to display sample reviews?");
+                    if (forceDisplay) {
+                        forceDisplaySampleReviews();
+                    }
+                }
+            }, 1000);
+        }
+    });
+    </script>
+    <script>
+    // DOM inspection function
+    function inspectDOM() {
+        console.log("Inspecting DOM for issues...");
+        
+        const report = {
+            criticalElements: {},
+            cssFiles: [],
+            jsFiles: [],
+            structureIssues: []
+        };
+        
+        // Check critical elements
+        ['reviewsList', 'loadingIndicator', 'noDataMessage', 'reviewModal', 'reviewModalBody',
+         'totalReviews', 'pendingReviews', 'approvedReviews', 'rejectedReviews',
+         'statusFilter', 'sourceFilter', 'searchInput'].forEach(id => {
+            const element = document.getElementById(id);
+            report.criticalElements[id] = {
+                exists: !!element,
+                visible: element ? window.getComputedStyle(element).display !== 'none' : false,
+                position: element ? element.getBoundingClientRect() : null
+            };
+            
+            if (element && element.getBoundingClientRect().width === 0) {
+                report.structureIssues.push(`Element #${id} has zero width, might be hidden by CSS`);
+            }
+        });
+        
+        // Check CSS files
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            report.cssFiles.push({
+                href: link.href,
+                loaded: true // We can't easily check if CSS was properly loaded
+            });
+        });
+        
+        // Check JS files
+        document.querySelectorAll('script').forEach(script => {
+            if (script.src) {
+                report.jsFiles.push({
+                    src: script.src,
+                    loaded: true // Similarly, we assume it's loaded if the script is in the DOM
+                });
+            }
+        });
+        
+        // Additional structure checks
+        if (document.querySelectorAll('.review-card').length === 0) {
+            report.structureIssues.push("No review cards found in DOM");
+        }
+        
+        if (document.querySelector('.review-container')) {
+            const container = document.querySelector('.review-container');
+            if (window.getComputedStyle(container).display === 'none') {
+                report.structureIssues.push("Review container is hidden (display: none)");
+            }
+        } else {
+            report.structureIssues.push("Review container not found");
+        }
+        
+        console.log("DOM Inspection Report:", report);
+        
+        // Create visual report
+        const consoleOutput = document.getElementById('consoleOutput');
+        if (consoleOutput) {
+            consoleOutput.innerHTML += `<div style="border-top: 1px solid #555; margin-top: 10px; padding-top: 10px;">
+                <strong>DOM Inspection Report</strong><br>
+                <strong>Critical Elements:</strong><br>
+                ${Object.keys(report.criticalElements)
+                    .map(id => `#${id}: ${report.criticalElements[id].exists ? '✅' : '❌'}${
+                        report.criticalElements[id].exists ? 
+                        ` (${report.criticalElements[id].visible ? 'visible' : 'hidden'})` : ''
+                    }`)
+                    .join('<br>')}
+                <br><strong>Issues:</strong><br>
+                ${report.structureIssues.length ? 
+                    report.structureIssues.map(issue => `- ${issue}`).join('<br>') : 
+                    '✅ No structure issues found'}
+            </div>`;
+        }
+        
+        return report;
+    }
+
+    // Add inspection to debug button
+    const originalDebugClick = document.getElementById('debugModeBtn').onclick;
+    document.getElementById('debugModeBtn').onclick = function() {
+        if (originalDebugClick) originalDebugClick.call(this);
+        
+        // Run DOM inspection
+        setTimeout(inspectDOM, 500);
+    };
+    </script>
+    <script>
+    // Check if warning should be shown
+    function checkForNoDataWarning() {
+        // Only show warning if review lists is empty and using the primary endpoint
+        const reviewsList = document.getElementById('reviewsList');
+        if (
+            reviewsList && 
+            reviewsList.children.length === 0 && 
+            currentEndpointIndex === 0
+        ) {
+            // Show the warning
+            const warning = document.getElementById('noTablesWarning');
+            if (warning) {
+                warning.style.display = 'block';
+            }
+        }
+    }
+
+    // Add dismiss button handler
+    document.getElementById('dismissWarningBtn')?.addEventListener('click', function() {
+        const warning = document.getElementById('noTablesWarning');
+        if (warning) {
+            warning.style.display = 'none';
+        }
+    });
+
+    // Check for warning after a short delay
+    setTimeout(checkForNoDataWarning, 3000);
+    </script>
+    <script>
+    // Add this to the end of your HTML file to ensure collegereviews is selected by default
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set default source to collegereviews if available
+        const sourceSelect = document.getElementById('sourceFilter');
+        if (sourceSelect) {
+            for (let i = 0; i < sourceSelect.options.length; i++) {
+                if (sourceSelect.options[i].value === 'collegereviews') {
+                    sourceSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+        
+        // You can uncomment this if you want to manually trigger a filter
+        // const event = new Event('change');
+        // sourceSelect.dispatchEvent(event);
+    });
+    </script>
+</body>
+</html> 

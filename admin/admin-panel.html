@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Campus Compass</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-logo">
+            <h1>Campus<span>Compass</span> Admin</h1>
+        </div>
+        <div class="admin-menu">
+            <a href="admin-panel.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="college-management.html"><i class="fas fa-university"></i> College Management</a>
+            <a href="user-management.html"><i class="fas fa-users"></i> User Management</a>
+            <a href="review-management.html"><i class="fas fa-star"></i> Reviews</a>
+            <a href="../landingpage/home.html"><i class="fas fa-sign-out-alt"></i> Back to Site</a>
+        </div>
+        <div class="admin-profile">
+            <img src="https://placehold.co/40x40" alt="Admin">
+            <span>Admin User</span>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>Admin Dashboard</h2>
+            <div class="date-display">
+                <i class="fas fa-calendar"></i>
+                <span id="currentDate">Loading...</span>
+            </div>
+        </div>
+        
+        <!-- Dashboard Content -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon colleges">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Colleges</h3>
+                    <p class="stat-number" id="totalColleges">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon users">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Registered Users</h3>
+                    <p class="stat-number" id="totalUsers">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon reviews">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Reviews</h3>
+                    <p class="stat-number" id="totalReviews">0</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon courses">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Courses</h3>
+                    <p class="stat-number" id="totalCourses">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-content">
+            <div class="recent-activity">
+                <div class="section-header">
+                    <h3>Recent Activity</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be added dynamically -->
+                    <div class="activity-item">
+                        <div class="activity-icon user-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>New user registered: <strong>Sara Johnson</strong></p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon review-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>New review for <strong>Harvard University</strong></p>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon college-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>New college added: <strong>Stanford University</strong></p>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <div class="section-header">
+                    <h3>Quick Actions</h3>
+                </div>
+                <div class="action-buttons">
+                    <a href="college-management.html" class="action-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Manage Colleges</span>
+                    </a>
+                    <a href="user-management.html" class="action-btn">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add User</span>
+                    </a>
+                    <a href="review-management.html" class="action-btn">
+                        <i class="fas fa-check"></i>
+                        <span>Approve Reviews</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Display current date
+        const dateElement = document.getElementById('currentDate');
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = new Date().toLocaleDateString('en-US', options);
+        
+        // Fetch dashboard stats
+        function fetchStats() {
+            // Fetch college count
+            fetch('../api/dashboard-stats.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('totalColleges').textContent = data.colleges || '0';
+                    document.getElementById('totalUsers').textContent = data.users || '0';
+                    document.getElementById('totalReviews').textContent = data.reviews || '0';
+                    document.getElementById('totalCourses').textContent = data.courses || '0';
+                })
+                .catch(error => {
+                    console.error('Error fetching stats:', error);
+                    // Fallback to placeholder values
+                    document.getElementById('totalColleges').textContent = '42';
+                    document.getElementById('totalUsers').textContent = '1,278';
+                    document.getElementById('totalReviews').textContent = '856';
+                    document.getElementById('totalCourses').textContent = '135';
+                });
+        }
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchStats();
+        });
+    </script>
+</body>
+</html> 

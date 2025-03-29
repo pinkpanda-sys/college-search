@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review API Debug Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            overflow: auto;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        select, input {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: #e74c3c;
+            background-color: #fde2e2;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .success {
+            color: #27ae60;
+            background-color: #e3fcec;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Review API Debug Tool</h1>
+    
+    <div id="messageContainer"></div>
+    
+    <div>
+        <h2>Fetch Reviews</h2>
+        <div>
+            <label for="statusFilter">Status:</label>
+            <select id="statusFilter">
+                <option value="all">All</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            
+            <label for="sourceFilter">Source:</label>
+            <select id="sourceFilter">
+                <option value="all">All</option>
+                <option value="reviews">Reviews</option>
+                <option value="collegereviews">College Reviews</option>
+            </select>
+            
+            <label for="searchFilter">Search:</label>
+            <input type="text" id="searchFilter" placeholder="Search term...">
+            
+            <button id="fetchButton">Fetch Reviews</button>
+        </div>
+        
+        <h3>Response</h3>
+        <div>
+            <p>Status: <span id="responseStatus">-</span></p>
+            <p>Time: <span id="responseTime">-</span></p>
+        </div>
+        <pre id="responseContainer">No data fetched yet</pre>
+    </div>
+    
+    <div>
+        <h2>Setup Tables</h2>
+        <button onclick="window.open('../api/setup-reviews.php', '_blank')">Setup Reviews Table</button>
+        <button onclick="window.open('../api/setup-collegereviews.php', '_blank')">Setup College Reviews Table</button>
+        <button onclick="window.open('../api/review-diagnostics.php', '_blank')">Run Diagnostics</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageContainer = document.getElementById('messageContainer');
+            const statusFilter = document.getElementById('statusFilter');
+            const sourceFilter = document.getElementById('sourceFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            const fetchButton = document.getElementById('fetchButton');
+            const responseStatus = document.getElementById('responseStatus');
+            const responseTime = document.getElementById('responseTime');
+            const responseContainer = document.getElementById('responseContainer');
+            
+            fetchButton.addEventListener('click', function() {
+                // Clear previous messages
+                messageContainer.innerHTML = '';
+                responseStatus.textContent = 'Loading...';
+                responseTime.textContent = '-';
+                responseContainer.textContent = 'Fetching data...';
+                
+                // Build URL with query parameters
+                let url = '../api/reviews.php';
+                const params = new URLSearchParams();
+                
+                if (statusFilter.value !== 'all') {
+                    params.append('status', statusFilter.value);
+                }
+                
+                if (sourceFilter.value !== 'all') {
+                    params.append('source', sourceFilter.value);
+                }
+                
+                if (searchFilter.value.trim() !== '') {
+                    params.append('search', searchFilter.value.trim());
+                }
+                
+                if (params.toString()) {
+                    url += '?' + params.toString();
+                }
+                
+                // Record start time
+                const startTime = performance.now();
+                
+                // Make the fetch request
+                fetch(url)
+                    .then(response => {
+                        // Calculate response time
+                        const endTime = performance.now();
+                        responseTime.textContent = `${(endTime - startTime).toFixed(2)} ms`;
+                        
+                        // Display response status
+                        responseStatus.textContent = `${response.status} ${response.statusText}`;
+                        
+                        // Check if response is okay
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        
+                        // Try to parse as JSON
+                        return response.text().then(text => {
+                            try {
+                                return { json: JSON.parse(text), text };
+                            } catch (error) {
+                                return { text };
+                            }
+                        });
+                    })
+                    .then(data => {
+                        if (data.json) {
+                            // Display JSON
+                            responseContainer.textContent = JSON.stringify(data.json, null, 2);
+                            
+                            // Add success message
+                            const successMsg = document.createElement('div');
+                            successMsg.className = 'success';
+                            successMsg.textContent = `Fetched ${Array.isArray(data.json) ? data.json.length : 1} record(s) successfully`;
+                            messageContainer.appendChild(successMsg);
+                        } else {
+                            // Display text response
+                            responseContainer.textContent = data.text;
+                            
+                            // Add warning message
+                            const warningMsg = document.createElement('div');
+                            warningMsg.className = 'error';
+                            warningMsg.textContent = 'Response is not valid JSON. Check the response body.';
+                            messageContainer.appendChild(warningMsg);
+                        }
+                    })
+                    .catch(error => {
+                        // Display error
+                        responseStatus.textContent = 'Error';
+                        responseContainer.textContent = error.toString();
+                        
+                        // Add error message
+                        const errorMsg = document.createElement('div');
+                        errorMsg.className = 'error';
+                        errorMsg.textContent = `Error: ${error.message}`;
+                        messageContainer.appendChild(errorMsg);
+                    });
+            });
+        });
+    </script>
+</body>
+</html> 

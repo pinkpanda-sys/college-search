@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-logo">
+            <h1>Campus<span>Compass</span> Admin</h1>
+        </div>
+        <div class="admin-menu">
+            <a href="admin-panel.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="college-management.html" class="active"><i class="fas fa-university"></i> College Management</a>
+            <a href="user-management.html"><i class="fas fa-users"></i> User Management</a>
+            <a href="review-management.html"><i class="fas fa-star"></i> Reviews</a>
+            <a href="../landingpage/home.html"><i class="fas fa-sign-out-alt"></i> Back to Site</a>
+        </div>
+        <div class="admin-profile">
+            <img src="https://placehold.co/40x40" alt="Admin">
+            <span>Admin User</span>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>College Management</h2>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchCollege" placeholder="Search colleges...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <button id="addCollegeBtn" class="btn-primary"><i class="fas fa-plus"></i> Add New College</button>
+            </div>
+        </div>
+        
+        <!-- College List -->
+        <div class="admin-content">
+            <div class="data-table-container">
+                <table class="data-table" id="collegeTable">
+                    <thead>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Contact</th>
+                            <th>Fees</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="collegeTableBody">
+                        <!-- College data will be populated here dynamically -->
+                    </tbody>
+                </table>
+                <div class="loading-indicator" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Loading colleges...</p>
+                </div>
+                <div class="no-data-message" id="noDataMessage">
+                    <i class="fas fa-school"></i>
+                    <p>No colleges found. Add your first college to get started.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit College Modal -->
+    <div class="modal" id="collegeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New College</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="collegeForm">
+                    <input type="hidden" id="isEditMode" value="false">
+                    
+                    <div class="form-group">
+                        <label for="collegeRanking">Ranking</label>
+                        <input type="number" id="collegeRanking" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collegeName">College Name</label>
+                        <input type="text" id="collegeName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collegeContact">Contact</label>
+                        <input type="text" id="collegeContact">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collegeFees">Fees (Annual)</label>
+                        <input type="number" id="collegeFees" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collegeLocation">Location</label>
+                        <textarea id="collegeLocation" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collegeMaplink">Map Link</label>
+                        <input type="url" id="collegeMaplink" placeholder="https://maps.google.com/?q=...">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" id="saveCollegeBtn" class="btn-primary">Save College</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content delete-modal">
+            <div class="modal-header">
+                <h3>Confirm Deletion</h3>
+                <button class="close-modal" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Are you sure you want to delete <span id="deleteCollegeName"></span>?</p>
+                    <p class="warning-text">This action cannot be undone and will also remove all associated courses and reviews.</p>
+                </div>
+                <div class="form-actions">
+                    <button id="cancelDeleteBtn" class="btn-secondary">Cancel</button>
+                    <button id="confirmDeleteBtn" class="btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="college-management.js"></script>
+</body>
+</html> 
