@@ -92,26 +92,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Sort colleges by ranking
-                data.sort((a, b) => a.rankings - b.rankings);
+                data.sort((a, b) => a.ranking - b.ranking);
                 
                 // Populate table with college data
                 data.forEach(college => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${college.rankings}</td>
+                        <td>${college.ranking}</td>
                         <td>${college.name}</td>
                         <td>${college.location}</td>
                         <td>${college.contact || '-'}</td>
                         <td>${formatCurrency(college.fees)}</td>
                         <td>
                             <div class="action-buttons">
-                                <button class="btn-view" data-id="${college.rankings}" title="View College">
+                                <button class="btn-view" data-id="${college.ranking}" title="View College">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="btn-edit" data-id="${college.rankings}" title="Edit College">
+                                <button class="btn-edit" data-id="${college.ranking}" title="Edit College">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn-delete" data-id="${college.rankings}" data-name="${college.name}" title="Delete College">
+                                <button class="btn-delete" data-id="${college.ranking}" data-name="${college.name}" title="Delete College">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`../api/colleges.php?id=${id}`)
             .then(response => response.json())
             .then(college => {
-                collegeRanking.value = college.rankings;
+                collegeRanking.value = college.ranking;
                 collegeName.value = college.name;
                 collegeContact.value = college.contact || '';
                 collegeFees.value = college.fees || '';
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get form data and ensure proper types
         const formData = {
-            rankings: parseInt(collegeRanking.value.trim()),
+            ranking: parseInt(collegeRanking.value.trim()),
             name: collegeName.value.trim(),
             location: collegeLocation.value.trim(),
             contact: collegeContact.value.trim() || null,
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Sending data:", formData); // Debug data being sent
         
         // Validate form data
-        if (!formData.rankings || !formData.name || !formData.location) {
+        if (!formData.ranking || !formData.name || !formData.location) {
             alert('Please fill in all required fields.');
             return;
         }

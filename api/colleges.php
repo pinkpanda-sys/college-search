@@ -37,7 +37,7 @@ try {
             if (isset($_GET['id'])) {
                 // Get specific college
                 $id = intval($_GET['id']);
-                $stmt = $conn->prepare("SELECT * FROM colleges WHERE rankings = ?");
+                $stmt = $conn->prepare("SELECT * FROM colleges WHERE ranking = ?");
                 $stmt->bind_param('i', $id);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -51,7 +51,7 @@ try {
                 }
             } else {
                 // Get all colleges
-                $result = $conn->query("SELECT * FROM colleges ORDER BY rankings");
+                $result = $conn->query("SELECT * FROM colleges ORDER BY ranking");
                 $colleges = [];
                 while ($row = $result->fetch_assoc()) {
                     $colleges[] = $row;
@@ -66,23 +66,23 @@ try {
             $data = json_decode($input, true);
             
             // Validate required fields
-            if (!isset($data['rankings']) || !isset($data['name']) || !isset($data['location'])) {
+            if (!isset($data['ranking']) || !isset($data['name']) || !isset($data['location'])) {
                 http_response_code(400);
                 echo json_encode(['success' => false, 'message' => 'Missing required fields']);
                 exit;
             }
             
-            // Check for duplicate rankings
-            $stmt = $conn->prepare("SELECT COUNT(*) as count FROM colleges WHERE rankings = ?");
-            $rankings = intval($data['rankings']);
-            $stmt->bind_param('i', $rankings);
+            // Check for duplicate ranking
+            $stmt = $conn->prepare("SELECT COUNT(*) as count FROM colleges WHERE ranking = ?");
+            $ranking = intval($data['ranking']);
+            $stmt->bind_param('i', $ranking);
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             
             if ($row['count'] > 0) {
                 http_response_code(409);
-                echo json_encode(['success' => false, 'message' => 'A college with this rankings already exists']);
+                echo json_encode(['success' => false, 'message' => 'A college with this ranking already exists']);
                 exit;
             }
             
@@ -94,8 +94,8 @@ try {
             $maplink = isset($data['maplink']) ? $data['maplink'] : null;
             
             // Insert the college
-            $stmt = $conn->prepare("INSERT INTO colleges (rankings, name, contact, fees, location, maplink) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param('issdss', $rankings, $name, $contact, $fees, $location, $maplink);
+            $stmt = $conn->prepare("INSERT INTO colleges (ranking, name, contact, fees, location, maplink) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param('issdss', $ranking, $name, $contact, $fees, $location, $maplink);
             
             if ($stmt->execute()) {
                 echo json_encode(['success' => true, 'message' => 'College added successfully']);
@@ -110,14 +110,14 @@ try {
             $data = json_decode($input, true);
             
             // Validate required fields
-            if (!isset($data['rankings']) || !isset($data['name']) || !isset($data['location'])) {
+            if (!isset($data['ranking']) || !isset($data['name']) || !isset($data['location'])) {
                 http_response_code(400);
                 echo json_encode(['success' => false, 'message' => 'Missing required fields']);
                 exit;
             }
             
             // Prepare data for update
-            $rankings = intval($data['rankings']);
+            $ranking = intval($data['ranking']);
             $name = $data['name'];
             $location = $data['location'];
             $contact = isset($data['contact']) ? $data['contact'] : null;
@@ -125,8 +125,8 @@ try {
             $maplink = isset($data['maplink']) ? $data['maplink'] : null;
             
             // Update the college
-            $stmt = $conn->prepare("UPDATE colleges SET name = ?, contact = ?, fees = ?, location = ?, maplink = ? WHERE rankings = ?");
-            $stmt->bind_param('ssdssi', $name, $contact, $fees, $location, $maplink, $rankings);
+            $stmt = $conn->prepare("UPDATE colleges SET name = ?, contact = ?, fees = ?, location = ?, maplink = ? WHERE ranking = ?");
+            $stmt->bind_param('ssdssi', $name, $contact, $fees, $location, $maplink, $ranking);
             
             if ($stmt->execute()) {
                 echo json_encode(['success' => true, 'message' => 'College updated successfully']);
@@ -144,7 +144,7 @@ try {
             }
             
             $id = intval($_GET['id']);
-            $stmt = $conn->prepare("DELETE FROM colleges WHERE rankings = ?");
+            $stmt = $conn->prepare("DELETE FROM colleges WHERE ranking = ?");
             $stmt->bind_param('i', $id);
             
             if ($stmt->execute() && $stmt->affected_rows > 0) {

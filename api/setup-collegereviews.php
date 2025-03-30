@@ -154,51 +154,54 @@ try {
         echo "<p>✅ Added $insertCount sample reviews to the collegereviews table</p>";
     }
     
-    // Set up the colleges table if it doesn't exist (for proper joining)
-    $result = $conn->query("SHOW TABLES LIKE 'colleges'");
-    $collegesTableExists = ($result && $result->num_rows > 0);
+    // Create colleges table if it doesn't exist
+    $sql = "CREATE TABLE IF NOT EXISTS colleges (
+        ranking INT(11) NOT NULL,
+        name VARCHAR(200) NOT NULL,
+        location TEXT NOT NULL,
+        contact VARCHAR(100) DEFAULT NULL,
+        fees DECIMAL(10,2) DEFAULT NULL,
+        maplink VARCHAR(255) DEFAULT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (ranking)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
     
-    if (!$collegesTableExists) {
-        echo "<p>Creating Colleges table for proper joining...</p>";
+    if ($conn->query($sql)) {
+        echo "Colleges table verified/created.\n";
+    } else {
+        throw new Exception("Error creating colleges table: " . $conn->error);
+    }
+    
+    // Check if we already have colleges
+    $result = $conn->query("SELECT COUNT(*) as count FROM colleges");
+    $row = $result->fetch_assoc();
+    
+    if ($row['count'] < 5) {
+        echo "Inserting sample colleges...\n";
         
-        $sql = "CREATE TABLE colleges (
-            id INT(11) NOT NULL AUTO_INCREMENT,
-            rankings INT(11) NOT NULL,
-            name VARCHAR(255) NOT NULL,
-            location VARCHAR(255) NOT NULL,
-            PRIMARY KEY (id)
-        )";
+        // Prepare sample colleges
+        $colleges = [
+            ['ranking' => 1, 'name' => 'Harvard University', 'location' => 'Cambridge, MA'],
+            ['ranking' => 2, 'name' => 'Stanford University', 'location' => 'Stanford, CA'],
+            ['ranking' => 3, 'name' => 'MIT', 'location' => 'Cambridge, MA'],
+            ['ranking' => 4, 'name' => 'Princeton University', 'location' => 'Princeton, NJ'],
+            ['ranking' => 5, 'name' => 'Yale University', 'location' => 'New Haven, CT']
+        ];
         
-        if ($conn->query($sql) === TRUE) {
-            echo "<p>✅ Colleges table created successfully</p>";
-            
-            // Add sample colleges
-            $sampleColleges = [
-                ['rankings' => 1, 'name' => 'Harvard University', 'location' => 'Cambridge, MA'],
-                ['rankings' => 2, 'name' => 'Stanford University', 'location' => 'Stanford, CA'],
-                ['rankings' => 3, 'name' => 'MIT', 'location' => 'Cambridge, MA'],
-                ['rankings' => 4, 'name' => 'Princeton University', 'location' => 'Princeton, NJ'],
-                ['rankings' => 5, 'name' => 'Yale University', 'location' => 'New Haven, CT']
-            ];
-            
-            $insertCount = 0;
-            foreach ($sampleColleges as $college) {
-                $stmt = $conn->prepare("INSERT INTO colleges (rankings, name, location) VALUES (?, ?, ?)");
-                $stmt->bind_param("iss", $college['rankings'], $college['name'], $college['location']);
-                
-                if ($stmt->execute()) {
-                    $insertCount++;
-                } else {
-                    echo "<p>❌ Error inserting college: " . $stmt->error . "</p>";
-                }
-                
-                $stmt->close();
+        // Insert sample colleges
+        $stmt = $conn->prepare("INSERT INTO colleges (ranking, name, location) VALUES (?, ?, ?)");
+        $stmt->bind_param("iss", $college['ranking'], $college['name'], $college['location']);
+        
+        foreach ($colleges as $college) {
+            try {
+                $stmt->execute();
+                echo "Added college: " . $college['name'] . "\n";
+            } catch (Exception $e) {
+                echo "Note: " . $college['name'] . " may already exist. Skipping.\n";
             }
-            
-            echo "<p>✅ Added $insertCount sample colleges to the colleges table</p>";
-        } else {
-            echo "<p>❌ Error creating Colleges table: " . $conn->error . "</p>";
         }
+    } else {
+        echo "Colleges table already has data. Skipping sample data insertion.\n";
     }
     
     echo "<h2>Setup Complete</h2>";

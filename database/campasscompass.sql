@@ -1,6 +1,6 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS campascompass;
-USE campascompass;
+CREATE DATABASE IF NOT EXISTS campuscompass;
+USE campuscompass;
 
 -- Create users table
 CREATE TABLE users (

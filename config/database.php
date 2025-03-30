@@ -3,7 +3,7 @@
 $servername = "localhost";  // Your MySQL server
 $username = "root";         // Your MySQL username
 $password = "";            // Your MySQL password
-$dbname = "campascompass";  // Updated database name
+$dbname = "campuscompass";  // Fixed database name typo (was campascompass)
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     return;
 }
 
-// Check if campascompass database exists
+// Check if campuscompass database exists
 $result = $conn->query("SHOW DATABASES LIKE '$dbname'");
 $dbExists = ($result && $result->num_rows > 0);
 
@@ -26,7 +26,7 @@ if (!$dbExists) {
     }
 }
 
-// Select the campascompass database
+// Select the campuscompass database
 if (!$conn->select_db($dbname)) {
     $GLOBALS['db_connection_error'] = "Failed to select database $dbname";
     return;

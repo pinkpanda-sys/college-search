@@ -9,6 +9,185 @@ function hideMenu() {
     navLinks.classList.remove('active');
 }
 
+// Load colleges from API
+function loadCollegesFromAPI() {
+    const collegeGrid = document.getElementById('collegeGrid');
+    const preloader = document.querySelector('.preloader');
+    
+    // Show preloader while fetching data
+    if (preloader) {
+        preloader.style.display = 'flex';
+    }
+    
+    // Create a message element for errors
+    let errorMessageElement = document.querySelector('.api-error-message');
+    if (!errorMessageElement) {
+        errorMessageElement = document.createElement('div');
+        errorMessageElement.className = 'api-error-message';
+        errorMessageElement.style.display = 'none';
+        errorMessageElement.style.padding = '20px';
+        errorMessageElement.style.margin = '20px auto';
+        errorMessageElement.style.backgroundColor = '#fff3f3';
+        errorMessageElement.style.borderRadius = '8px';
+        errorMessageElement.style.textAlign = 'center';
+        if (collegeGrid) {
+            collegeGrid.parentNode.insertBefore(errorMessageElement, collegeGrid);
+        }
+    }
+    
+    // Fetch colleges from the API
+    fetch('../api/colleges.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status} ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then(text => {
+            try {
+                return JSON.parse(text);
+            } catch (error) {
+                console.error('Invalid JSON response:', text);
+                throw new Error('Invalid JSON response');
+            }
+        })
+        .then(colleges => {
+            if (preloader) {
+                preloader.style.display = 'none';
+            }
+            
+            if (!colleges || colleges.length === 0) {
+                errorMessageElement.textContent = 'No colleges found in the database.';
+                errorMessageElement.style.display = 'block';
+                return;
+            }
+            
+            errorMessageElement.style.display = 'none';
+            
+            // Clear existing college cards
+            if (collegeGrid) {
+                collegeGrid.innerHTML = '';
+                
+                // Sort colleges by rankings
+                colleges.sort((a, b) => a.ranking - b.ranking);
+                
+                // Create college cards dynamically
+                colleges.forEach(college => {
+                    // Determine if college is Indian or international (simple check)
+                    const isIndian = college.location && college.location.toLowerCase().includes('india');
+                    const category = isIndian ? 'india' : 'international';
+                    
+                    const collegeCard = document.createElement('div');
+                    collegeCard.className = `college-card ${category}`;
+                    collegeCard.setAttribute('data-category', category);
+                    collegeCard.setAttribute('data-ranking', college.ranking);
+                    collegeCard.setAttribute('data-fees', college.fees || '0');
+                    collegeCard.setAttribute('data-acceptance', '10'); // Default value since DB doesn't have this
+                    
+                    // Construct college card HTML
+                    collegeCard.innerHTML = `
+                        <div class="college-header">
+                            <div class="college-logo">
+                                <img src="https://placehold.co/80x80?text=${college.name.slice(0, 5)}" alt="${college.name} Logo">
+                            </div>
+                            <div class="college-badge">
+                                <span class="rank">#${college.ranking}</span>
+                                <span>in ${isIndian ? 'India' : 'World'}</span>
+                            </div>
+                        </div>
+                        <div class="college-content">
+                            <h3>${college.name}</h3>
+                            <div class="college-location"><i class="fas fa-map-marker-alt"></i> ${college.location}</div>
+                            <div class="college-stats">
+                                <div class="stat">
+                                    <span class="stat-value">10%</span>
+                                    <span class="stat-label">Acceptance Rate</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">₹${formatCurrency(college.fees)}</span>
+                                    <span class="stat-label">Annual Fees</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">A+</span>
+                                    <span class="stat-label">Rating</span>
+                                </div>
+                            </div>
+                            <p class="college-desc">${college.name} is a renowned educational institution offering quality education to students.</p>
+                            <div class="college-tags">
+                                <span class="tag">Education</span>
+                                <span class="tag">Research</span>
+                            </div>
+                        </div>
+                        <div class="college-actions">
+                            <a href="#" class="btn-compare"><i class="fas fa-balance-scale"></i> Compare</a>
+                            <a href="${college.maplink || '#'}" target="_blank" class="btn-map"><i class="fas fa-map-marked-alt"></i> View Map</a>
+                            <a href="#" class="btn-details" data-id="${college.ranking}">View Details</a>
+                        </div>
+                    `;
+                    
+                    collegeGrid.appendChild(collegeCard);
+                });
+                
+                // Update the results count
+                const resultsCount = document.getElementById('resultsCount');
+                if (resultsCount) {
+                    resultsCount.textContent = colleges.length;
+                }
+                
+                // Re-add event listeners for comparison buttons
+                setupComparisonButtons();
+                
+                // Animate the cards
+                animateContent();
+            }
+        })
+        .catch(error => {
+            if (preloader) {
+                preloader.style.display = 'none';
+            }
+            
+            console.error('Error loading colleges:', error);
+            errorMessageElement.textContent = `Error loading colleges: ${error.message}. Please refresh the page or try again later.`;
+            errorMessageElement.style.display = 'block';
+        });
+}
+
+// Helper function to format currency
+function formatCurrency(value) {
+    if (!value) return '0';
+    
+    const num = parseFloat(value);
+    if (num >= 100000) {
+        return (num / 100000).toFixed(1) + 'L';
+    } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'K';
+    }
+    return num.toString();
+}
+
+// Setup comparison buttons
+function setupComparisonButtons() {
+    const compareButtons = document.querySelectorAll('.btn-compare');
+    if (compareButtons.length > 0) {
+        compareButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const collegeCard = this.closest('.college-card');
+                const collegeName = collegeCard.querySelector('h3').textContent;
+                
+                // Add college to comparison
+                addToComparison(collegeName, collegeCard);
+                
+                // Show modal
+                const comparisonModal = document.getElementById('comparisonModal');
+                if (comparisonModal) {
+                    comparisonModal.classList.add('active');
+                }
+            });
+        });
+    }
+}
+
 // Preloader
 window.addEventListener('load', function() {
     const preloader = document.querySelector('.preloader');
@@ -17,10 +196,10 @@ window.addEventListener('load', function() {
         setTimeout(() => {
             preloader.style.display = 'none';
         }, 500);
-        
-        // Initial animations when page loads
-        animateContent();
     }, 1000);
+    
+    // Load colleges from API
+    loadCollegesFromAPI();
     
     // Check for URL parameters to see if we need to populate the search
     const urlParams = new URLSearchParams(window.location.search);
